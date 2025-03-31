@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jogo</title>
+</head>
+<body>
+    <form action="jogador.php" method="post">
+        <label>Digite um número para o participante desafiar</label>
+        <input
+        type="number"
+        name="numero"/>
+        <br><br>
+        <input type="submit" value="Esconder botão"/>
+
+    </form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+<html>
+    <body>
+        <form action="jogador.php">
+            <label>Tente acertar um numero:</label>
+            <input
+            name="numeros_testes"
+            type="text"/>
+            <br><br>
+            <input type="submit" value="Escolher"/>
+        </form>
+        <?php
+        $a=$_POST["numero"];
+        $contador=0;
+        $numeros_testes='';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['numeros_testes']) && is_numeric($_POST['numeros_testes'])) {
+                $numeros_testes = (float)$_POST['numeros_testes'];
+                if ($numero != 0) {
+                    $soma = isset($_POST['soma']) ? (float)$_POST['soma'] : 0; //se o soma existir, será convertido pra float, senão será 0
+                    $contador = isset($_POST['contador']) ? (int)$_POST['contador'] : 0; //se o contador existir, será convertido pra float, senão será 0
+                    $numerosTexto = isset($_POST['numerosTexto']) ? $_POST['numerosTexto'] : ''; //se numerosTexto existir, armazenará o valor em $numerosTexto
+    
+                    $soma = $soma + $numero; //acumulador
+                    $contador++;
+                    
+                    // Atualiza a string com os números, separados por vírgula
+                    if ($numerosTexto === '') {
+                        $numerosTexto = $numero; // Se a string estiver vazia, recebe o número atual
+                    } else {
+                        $numerosTexto = $numerosTexto . ', ' . $numero; // Caso contrário, adiciona o número com uma vírgula
+                    }
+                    
+                }
+            }
+        }
+        ?>
+    </body>
+</html>
