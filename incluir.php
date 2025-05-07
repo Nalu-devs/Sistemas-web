@@ -5,30 +5,36 @@
 </HEAD>
 <BODY>
 <?php
-$cpf=			$_POST["cpf"];
-$nome=		$_POST["nome"];
-$fone= 		   $_POST["fone"];
-$data=			   $_POST["data"];
-$receita=			   $_POST["receita"];
-$quadro=	$_POST["quadro_clinico"];
-$con=mysqli_connect("localhost","root","","clinica") or die ("erro!"); //faz a conexão com o banco de dados detran
+$placa=			$_POST["placa"];
+$veiculo=		$_POST["veiculo"];
+$marca= 		   $_POST["marca"];
+$cor=			   $_POST["cor"];
+$ano=			   $_POST["ano"];
+$proprietario=	$_POST["proprietario"];
+$fone=			$_POST["fone"];
+$opcionais=		$_POST["opcionais"];
+$con=mysqli_connect("localhost","root","","detran") or die ("erro!"); //faz a conexão com o banco de dados detran
 
-$in = "insert into pacientes values('$cpf',
-									         '$nome',
-									         '$fone',
-									         '$data',
-									         '$receita', 
-									         '$quadro')";
+$in = "insert into veiculos values ('$placa',
+									         '$veiculo',
+									         '$marca',
+									         '$cor',
+									         '$ano',
+									         '$proprietario', 
+									         '$fone', 
+									         '$opcionais')";
 $incluir=mysqli_query($con,$in);
 if ($incluir==1)
 {
    echo "
-   cpf:		$cpf<BR>
-   nome:		$nome<BR>
-   fone:		$fone<BR>
-   data:			$data<BR>
-   receita:			$receita<BR>
-   quadro:   $quadro<hr>";
+   Placa:		$placa<BR>
+   Veículo:		$veiculo<BR>
+   Marca:		$marca<BR>
+   Cor:			$cor<BR>
+   Ano:			$ano<BR>
+   Proprietário:$proprietario<BR>
+   Fone:		$fone<BR>
+   Opcionais: 	$opcionais<hr>";
    
    echo "Registro incluído com sucesso!<BR>";
 }
@@ -37,6 +43,7 @@ else
    echo "Registro NÃO incluído!<BR>";
 }
 echo "<a href='incluir.html'>Voltar</a><BR>";
+echo "<a href='consultar.html'>Consultar veiculos</a>";
 ?>
 </BODY>
 </HTML>
